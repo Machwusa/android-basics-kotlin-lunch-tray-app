@@ -19,8 +19,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import com.example.lunchtray.constants.Constants
 import com.example.lunchtray.data.DataSource
 import java.text.NumberFormat
+import java.util.*
 
 class OrderViewModel : ViewModel() {
 
@@ -33,7 +35,7 @@ class OrderViewModel : ViewModel() {
     private var previousAccompanimentPrice = 0.0
 
     // Default tax rate
-    private val taxRate = 0.08
+    private val taxRate = 0.14
 
     // Entree for the order
     private val _entree = MutableLiveData<MenuItem?>()
@@ -50,19 +52,19 @@ class OrderViewModel : ViewModel() {
     // Subtotal for the order
     private val _subtotal = MutableLiveData(0.0)
     val subtotal: LiveData<String> = Transformations.map(_subtotal) {
-        NumberFormat.getCurrencyInstance().format(it)
+        NumberFormat.getCurrencyInstance(Locale(Constants.LANGUAGE, Constants.COUNTRY)).format(it)
     }
 
     // Total cost of the order
     private val _total = MutableLiveData(0.0)
     val total: LiveData<String> = Transformations.map(_total) {
-        NumberFormat.getCurrencyInstance().format(it)
+        NumberFormat.getCurrencyInstance(Locale(Constants.LANGUAGE, Constants.COUNTRY)).format(it)
     }
 
     // Tax for the order
     private val _tax = MutableLiveData(0.0)
     val tax: LiveData<String> = Transformations.map(_tax) {
-        NumberFormat.getCurrencyInstance().format(it)
+        NumberFormat.getCurrencyInstance(Locale(Constants.LANGUAGE, Constants.COUNTRY)).format(it)
     }
 
     /**
@@ -71,12 +73,27 @@ class OrderViewModel : ViewModel() {
     fun setEntree(entree: String) {
         // TODO: if _entree.value is not null, set the previous entree price to the current
         //  entree price.
+        if (_entree.value != null){
+            previousEntreePrice = _entree.value!!.price
+        }
 
         // TODO: if _subtotal.value is not null subtract the previous entree price from the current
         //  subtotal value. This ensures that we only charge for the currently selected entree.
+        if (_subtotal.value != null){
+            val currentSub = _subtotal.value!! - previousEntreePrice
+            _subtotal.value = currentSub
+        }
 
         // TODO: set the current entree value to the menu item corresponding to the passed in string
+
+        _entree.value = menuItems[entree]
+
+        /*for (item in menuItems){
+            if (item.key == entree) _entree.value = item.value
+        }*/
+
         // TODO: update the subtotal to reflect the price of the selected entree.
+        _entree.value?.price?.let { updateSubtotal(it) }
     }
 
     /**
@@ -84,12 +101,22 @@ class OrderViewModel : ViewModel() {
      */
     fun setSide(side: String) {
         // TODO: if _side.value is not null, set the previous side price to the current side price.
+        if (_side.value != null){
+            previousSidePrice = _side.value!!.price
+        }
 
         // TODO: if _subtotal.value is not null subtract the previous side price from the current
         //  subtotal value. This ensures that we only charge for the currently selected side.
+        if (_subtotal.value != null){
+            val currentSub = _subtotal.value!! - previousSidePrice
+            _subtotal.value = currentSub
+        }
 
         // TODO: set the current side value to the menu item corresponding to the passed in string
+        _side.value = menuItems[side]
+
         // TODO: update the subtotal to reflect the price of the selected side.
+        _side.value?.price?.let { updateSubtotal(it) }
     }
 
     /**
@@ -98,14 +125,24 @@ class OrderViewModel : ViewModel() {
     fun setAccompaniment(accompaniment: String) {
         // TODO: if _accompaniment.value is not null, set the previous accompaniment price to the
         //  current accompaniment price.
+        if (_accompaniment.value != null){
+            previousAccompanimentPrice = _accompaniment.value!!.price
+        }
 
         // TODO: if _accompaniment.value is not null subtract the previous accompaniment price from
         //  the current subtotal value. This ensures that we only charge for the currently selected
         //  accompaniment.
+        if (_subtotal.value != null){
+            val currentSub = _subtotal.value!! - previousAccompanimentPrice
+            _subtotal.value = currentSub
+        }
 
         // TODO: set the current accompaniment value to the menu item corresponding to the passed in
         //  string
+        _accompaniment.value = menuItems[accompaniment]
+
         // TODO: update the subtotal to reflect the price of the selected accompaniment.
+        _accompaniment.value?.price?.let { updateSubtotal(it) }
     }
 
     /**
@@ -115,8 +152,15 @@ class OrderViewModel : ViewModel() {
         // TODO: if _subtotal.value is not null, update it to reflect the price of the recently
         //  added item.
         //  Otherwise, set _subtotal.value to equal the price of the item.
+        if (_subtotal.value != null){
+            _subtotal.value = _subtotal.value!! + itemPrice
+        }else{
+            _subtotal.value = itemPrice
+        }
 
         // TODO: calculate the tax and resulting total
+        val currentTaxValue = _subtotal.value!! * taxRate
+        _total.value = _subtotal.value!! + currentTaxValue
     }
 
     /**
@@ -124,7 +168,9 @@ class OrderViewModel : ViewModel() {
      */
     fun calculateTaxAndTotal() {
         // TODO: set _tax.value based on the subtotal and the tax rate.
+        _tax.value = _subtotal.value!! * taxRate
         // TODO: set the total based on the subtotal and _tax.value.
+        _total.value = _subtotal.value!! + _tax.value!!
     }
 
     /**
@@ -132,5 +178,9 @@ class OrderViewModel : ViewModel() {
      */
     fun resetOrder() {
         // TODO: Reset all values associated with an order
+        _entree.value = null
+        _side.value = null
+        _accompaniment.value = null
+        _subtotal.value = 0.0
     }
 }
