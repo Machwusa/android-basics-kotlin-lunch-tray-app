@@ -159,8 +159,9 @@ class OrderViewModel : ViewModel() {
         }
 
         // TODO: calculate the tax and resulting total
-        val currentTaxValue = _subtotal.value!! * taxRate
-        _total.value = _subtotal.value!! + currentTaxValue
+        /*val currentTaxValue = _subtotal.value!! * taxRate
+        _total.value = _subtotal.value!! + currentTaxValue*/
+        calculateTaxAndTotal()
     }
 
     /**
@@ -182,5 +183,7 @@ class OrderViewModel : ViewModel() {
         _side.value = null
         _accompaniment.value = null
         _subtotal.value = 0.0
+        _total.value = 0.0
+        _tax.value = 0.0
     }
 }
