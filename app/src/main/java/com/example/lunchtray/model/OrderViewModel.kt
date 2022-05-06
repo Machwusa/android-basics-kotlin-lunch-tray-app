@@ -15,6 +15,7 @@
  */
 package com.example.lunchtray.model
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
@@ -25,6 +26,7 @@ import java.text.NumberFormat
 import java.util.*
 
 class OrderViewModel : ViewModel() {
+    private val TAG = javaClass.simpleName
 
     // Map of menu items
     val menuItems = DataSource.menuItems
@@ -94,6 +96,8 @@ class OrderViewModel : ViewModel() {
 
         // TODO: update the subtotal to reflect the price of the selected entree.
         _entree.value?.price?.let { updateSubtotal(it) }
+
+        Log.d(TAG, "setEntree: ${_entree.value}")
     }
 
     /**

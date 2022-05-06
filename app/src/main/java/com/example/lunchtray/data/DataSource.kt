@@ -30,9 +30,9 @@ object DataSource {
             price = 7.00,
             type = ItemType.ENTREE
         ),
-        "chili" to
+        "chilli" to
         MenuItem(
-            name = "Three Bean Chili",
+            name = "Three Bean Chilli",
             description = "Black beans, red beans, kidney beans, slow cooked, topped with onion",
             price = 4.00,
             type = ItemType.ENTREE
