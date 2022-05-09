@@ -48,7 +48,7 @@ class EntreeMenuFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentEntreeMenuBinding.inflate(inflater, container, false)
         val root: View = binding.root
         return root
@@ -59,7 +59,7 @@ class EntreeMenuFragment : Fragment() {
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
             viewModel = sharedViewModel
-            // TODO: initialize the EntreeMenuFragment variables
+            //  initialize the EntreeMenuFragment variables
             entreeMenuFragment = this@EntreeMenuFragment
         }
     }
@@ -68,7 +68,7 @@ class EntreeMenuFragment : Fragment() {
      * Navigate to the side menu fragment.
      */
     fun goToNextScreen() {
-        // TODO: Navigate to the SideMenuFragment
+        //  Navigate to the SideMenuFragment
         findNavController().navigate(R.id.action_entreeMenuFragment_to_sideMenuFragment)
     }
 
@@ -76,9 +76,9 @@ class EntreeMenuFragment : Fragment() {
      * Cancel the order and start over.
      */
     fun cancelOrder() {
-        // TODO: Reset order in view model
+        //  Reset order in view model
         sharedViewModel.resetOrder()
-        // TODO: Navigate back to the [StartFragment] to start over
+        //  Navigate back to the [StartFragment] to start over
         findNavController().navigate(R.id.action_entreeMenuFragment_to_startOrderFragment)
     }
 

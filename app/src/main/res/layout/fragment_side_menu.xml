@@ -26,7 +26,7 @@
             name="viewModel"
             type="com.example.lunchtray.model.OrderViewModel" />
 
-        <!-- TODO: Add the data binding variable for the SideMenuFragment -->
+        <!--  Add the data binding variable for the SideMenuFragment -->
         <variable
             name="sideMenuFragment"
             type="com.example.lunchtray.ui.order.SideMenuFragment" />
@@ -51,7 +51,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <!-- TODO: set the side in the view model when the RadioButton is clicked -->
+                <!--  set the side in the view model when the RadioButton is clicked -->
                 <RadioButton
                     android:id="@+id/salad"
                     android:layout_width="wrap_content"
@@ -83,7 +83,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/salad_description" />
 
-                <!-- TODO: set the side in the view model when the RadioButton is clicked -->
+                <!--  set the side in the view model when the RadioButton is clicked -->
                 <RadioButton
                     android:id="@+id/soup"
                     android:layout_width="wrap_content"
@@ -116,7 +116,7 @@
                     app:layout_constraintTop_toBottomOf="@id/soup_description" />
 
 
-                <!-- TODO: set the side in the view model when the RadioButton is clicked -->
+                <!--  set the side in the view model when the RadioButton is clicked -->
                 <RadioButton
                     android:id="@+id/potatoes"
                     android:layout_width="wrap_content"
@@ -148,7 +148,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/potato_description" />
 
-                <!-- TODO: set the side in the view model when the RadioButton is clicked -->
+                <!--  set the side in the view model when the RadioButton is clicked -->
                 <RadioButton
                     android:id="@+id/rice"
                     android:layout_width="wrap_content"
@@ -184,7 +184,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/side_options" />
 
-            <!-- TODO: set the text to the current subtotal value from the view model -->
+            <!--  set the text to the current subtotal value from the view model -->
             <TextView
                 android:id="@+id/subtotal"
                 style="@style/Widget.LunchTray.TextView.Subtotal"
@@ -193,7 +193,7 @@
                 android:text="@{@string/subtotal(viewModel.subtotal)}"
                 tools:text="Subtotal $5.00"/>
 
-            <!-- TODO: cancel the order when clicked -->
+            <!--  cancel the order when clicked -->
             <Button
                 android:id="@+id/cancel_button"
                 style="@style/Widget.Order.Button.Cancel"
@@ -202,7 +202,7 @@
                 app:layout_constraintTop_toTopOf="@id/next_button"
                 android:onClick="@{() -> sideMenuFragment.cancelOrder()}"/>
 
-            <!-- TODO: go to the next screen when clicked -->
+            <!--  go to the next screen when clicked -->
             <Button
                 android:id="@+id/next_button"
                 style="@style/Widget.Order.Button.Next"
