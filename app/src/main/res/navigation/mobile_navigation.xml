@@ -58,7 +58,7 @@
     <fragment
         android:id="@+id/accompanimentMenuFragment"
         android:name="com.example.lunchtray.ui.order.AccompanimentMenuFragment"
-        android:label="fragment_accompaniment_menu"
+        android:label="@string/title_accompaniment_menu"
         tools:layout="@layout/fragment_accompaniment_menu">
         <action
             android:id="@+id/action_accompanimentMenuFragment_to_checkoutFragment"
@@ -70,7 +70,7 @@
     <fragment
         android:id="@+id/checkoutFragment"
         android:name="com.example.lunchtray.ui.order.CheckoutFragment"
-        android:label="fragment_checkout"
+        android:label="@string/title_checkout"
         tools:layout="@layout/fragment_checkout">
         <action
             android:id="@+id/action_checkoutFragment_to_startOrderFragment"
