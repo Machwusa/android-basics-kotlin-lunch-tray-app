@@ -37,4 +37,18 @@
     <string name="pastaName">Mushroom Pasta</string>
     <string name="skillet">skillet</string>
     <string name="skilletName">Spicy Black Bean Skillet</string>
+    <string name="salad">salad</string>
+    <string name="saladName">Summer Salad</string>
+    <string name="soup">soup</string>
+    <string name="soupName">Butternut Squash Soup</string>
+    <string name="potatoes">potatoes</string>
+    <string name="potatoesName">Spicy Potatoes</string>
+    <string name="rice">rice</string>
+    <string name="riceName">Coconut Rice</string>
+    <string name="bread">bread</string>
+    <string name="breadName">Lunch Roll</string>
+    <string name="berries">berries</string>
+    <string name="berriesName">Mixed Berries</string>
+    <string name="pickles">pickles</string>
+    <string name="picklesName">Pickled Veggies</string>
 </resources>
